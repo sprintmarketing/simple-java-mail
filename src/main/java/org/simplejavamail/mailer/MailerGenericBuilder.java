@@ -90,6 +90,11 @@ public abstract class MailerGenericBuilder<T extends MailerGenericBuilder> {
 	 * @see #withDebugLogging(Boolean)
 	 */
 	private Boolean debugLogging;
+
+	/**
+	 * @see #withValidationBypass(Boolean)
+	 */
+	private Boolean validationBypass = false;
 	
 	/**
 	 * @see #withSessionTimeout(Integer)
@@ -181,7 +186,7 @@ public abstract class MailerGenericBuilder<T extends MailerGenericBuilder> {
 	 */
 	OperationalConfig buildOperationalConfig() {
 		return new OperationalConfig(getProperties(), getSessionTimeout(), getThreadPoolSize(), getTransportModeLoggingOnly(), getDebugLogging(),
-				getSslHostsToTrust(), getTrustAllSSLHost());
+				getSslHostsToTrust(), getTrustAllSSLHost(), getValidationBypass());
 	}
 	
 	/**
@@ -273,6 +278,14 @@ public abstract class MailerGenericBuilder<T extends MailerGenericBuilder> {
 		this.debugLogging = debugLogging;
 		return (T) this;
 	}
+
+    /**
+     * This flag is set on mailer instance so that it bypass any additional validation when sending the email.
+     */
+	public T withValidationBypass(@Nullable final Boolean validationBypass) {
+	    this.validationBypass = validationBypass;
+	    return (T) this;
+    }
 	
 	/**
 	 * Controls the timeout to use when sending emails (affects socket connect-, read- and write timeouts).
@@ -502,6 +515,13 @@ public abstract class MailerGenericBuilder<T extends MailerGenericBuilder> {
 	public Boolean getDebugLogging() {
 		return debugLogging;
 	}
+
+    /**
+     * @see #withValidationBypass(Boolean)
+     */
+	public Boolean getValidationBypass() {
+	    return validationBypass;
+    }
 	
 	/**
 	 * @see #withSessionTimeout(Integer)

@@ -48,11 +48,13 @@ public class OperationalConfig {
 	 * @see org.simplejavamail.mailer.MailerBuilder.MailerRegularBuilder#trustingAllHosts(Boolean)
 	 */
 	private final boolean trustAllSSLHost;
+
+	private final boolean validationBypass;
 	
 	/**
 	 * For internal use only.
 	 */
-	public OperationalConfig(@Nonnull Properties properties, int sessionTimeout, int threadPoolSize, boolean transportModeLoggingOnly, boolean debugLogging, List<String> sslHostsToTrust, boolean trustAllSSLHost) {
+	public OperationalConfig(@Nonnull Properties properties, int sessionTimeout, int threadPoolSize, boolean transportModeLoggingOnly, boolean debugLogging, List<String> sslHostsToTrust, boolean trustAllSSLHost, boolean validationBypass) {
 		this.properties = properties;
 		this.sessionTimeout = sessionTimeout;
 		this.threadPoolSize = threadPoolSize;
@@ -60,6 +62,7 @@ public class OperationalConfig {
 		this.debugLogging = debugLogging;
 		this.sslHostsToTrust = Collections.unmodifiableList(sslHostsToTrust);
 		this.trustAllSSLHost = trustAllSSLHost;
+		this.validationBypass = validationBypass;
 	}
 	
 	/**
@@ -110,4 +113,6 @@ public class OperationalConfig {
 	public Properties getProperties() {
 		return properties;
 	}
+
+	public boolean isValidationBypass() { return validationBypass; }
 }

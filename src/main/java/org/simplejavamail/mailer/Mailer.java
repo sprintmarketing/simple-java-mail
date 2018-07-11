@@ -238,9 +238,17 @@ public class Mailer {
 	 * @see #validate(Email)
 	 */
 	public final synchronized Future<?> sendMail(final Email email, @SuppressWarnings("SameParameterValue") final boolean async) {
-		if (validate(email)) {
+	    boolean validated = false;
+	    if(!getOperationalConfig().isValidationBypass()) {
+	        validated = validate(email);
+        } else {
+	        validated = true;
+        }
+
+		if (validated) {
 			return mailSender.send(email, async);
 		}
+
 		throw new AssertionError("Email not valid, but no MailException was thrown for it");
 	}
 	

@@ -100,6 +100,13 @@ public class MailerBuilder {
 	public static MailerRegularBuilder withDebugLogging(Boolean debugLogging) {
 		return new MailerRegularBuilder().withDebugLogging(debugLogging);
 	}
+
+    /**
+     * Delegates to {@link MailerRegularBuilder#withValidationBypass(Boolean)}
+     */
+	public static MailerRegularBuilder withValidationBypass(Boolean validationBypass) {
+        return new MailerRegularBuilder().withValidationBypass(validationBypass);
+    }
 	
 	/**
 	 * Shortcuts to {@link MailerRegularBuilder#buildMailer()}. This means that none of the builder methods are used and the configuration completely
