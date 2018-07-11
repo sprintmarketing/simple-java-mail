@@ -3,7 +3,7 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
 
     <modelVersion>4.0.0</modelVersion>
-    <groupId>org.simplejavamail</groupId>
+    <groupId>ca.sprintmarketing</groupId>
     <artifactId>simple-java-mail</artifactId>
     <packaging>jar</packaging>
     <name>Simple Java Mail</name>
@@ -184,14 +184,16 @@
     </dependencies>
 
     <distributionManagement>
-        <snapshotRepository>
-            <id>ossrh</id>
-            <url>https://oss.sonatype.org/content/repositories/snapshots</url>
-        </snapshotRepository>
         <repository>
-            <id>ossrh</id>
-            <url>https://oss.sonatype.org/service/local/staging/deploy/maven2/</url>
+            <id>central</id>
+            <name>d55b12e4d0a3-releases</name>
+            <url>http://artifactory.berta.casl-smtp.com:8081/artifactory/libs-release-local</url>
         </repository>
+        <snapshotRepository>
+            <id>snapshots</id>
+            <name>d55b12e4d0a3-snapshots</name>
+            <url>http://artifactory.berta.casl-smtp.com:8081/artifactory/libs-release-local</url>
+        </snapshotRepository>
     </distributionManagement>
 
     <build>
